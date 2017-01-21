@@ -1,13 +1,15 @@
-# morning-board, my awesome Atlasboard dashboard
+# Atlasboard dashboard for your morning routine
 
-SETUP
+## SETUP
+
 1. Copy globalAuth.json.sample -> globalAuth.json
 2. Enter your darksky api key
 3. Create a google api key at https://console.developers.google.com
    Make sure it has "maps embed" and "maps directions" api access
 4. Copy morning/dashboard/morning.json.sample -> morning.json (edit values as needed)
 
-TODO
+## TODO
+
 - add config example to all jobs
 - add api links to get keys in globalAuth.json
 - add config check to all jobs

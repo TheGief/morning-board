@@ -32,7 +32,7 @@ module.exports = {
       var url            = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + config.origin + 
                            '&destination=' + config.destination + 
                            '&departure_time=' + departure_time.unix() + 
-                           '&mode=' = config.travelMode +
+                           '&mode=' + config.travelMode +
                            '&key=' + config.globalAuth[config.auth].api_key;
 
       // Get duration in traffic for each departure time
