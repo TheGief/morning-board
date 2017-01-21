@@ -1,0 +1,8 @@
+{
+    "darksky":{
+        "api_key":"xxxx"
+    },
+    "google":{
+        "api_key":"xxxx"
+    }
+}

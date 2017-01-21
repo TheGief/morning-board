@@ -1,0 +1,54 @@
+{
+
+  "title": "Mornings",
+  "titleVisible": false,
+  "description": "Morning Routine",
+
+  "layout": {
+      "gridSize" : { "columns" : 4, "rows" : 2 },
+      "customJS" : ["skycons.js"],
+      "widgets" : [
+        {"row" : 1, "col" : 1, "width" : 1, "height" : 1, "widget" : "traffic", "job" : "traffic", "config": "traffic"},
+        {"row" : 2, "col" : 1, "width" : 1, "height" : 1, "widget" : "weather", "job" : "weather", "config": "work_weather"},
+        {"row" : 1, "col" : 2, "width" : 2, "height" : 2, "widget" : "map", "job" : "map", "config": "map"},
+        {"row" : 1, "col" : 3, "width" : 1, "height" : 1, "widget" : "weather", "job" : "weather", "config": "home_weather"},
+        {"row" : 2, "col" : 3, "width" : 1, "height" : 1, "widget" : "schedule", "job" : "schedule", "config": "schedule"}
+      ]
+  },
+
+  "config": {
+      "traffic" : {
+        "interval" : 300000,
+        "auth" :  "google",
+        "travelMode" : "DRIVING",
+        "origin" : "29400 SW Town Center Loop West, Wilsonville, OR 97070",
+        "destination" : "111 SW 5th Ave, Portland, OR 97204",
+        "departures" : [0,10,20,30,40,50,60,70,80,90]
+      },
+      "home_weather" : {
+        "interval" : 300000,
+        "auth" :  "darksky",
+        "latitude" : 45.432147,
+        "longitude" : -122.846347,
+        "location" : "111 SW 5th Ave, Portland"
+      },
+      "work_weather" : {
+        "interval" : 300000,
+        "auth" :  "darksky",
+        "latitude" : 45.522187,
+        "longitude" : -122.676291,
+        "location" : "12155 SW Jaeger Terrace, Beaverton"
+      },
+      "schedule" : {
+        "interval" : 900000,
+        "calendarUrl" :  "https://calendar.google.com/calendar/ical/xxxxx/basic.ics",
+        "maxEntries": 9
+      },
+      "map" : {
+        "interval" : 300000,
+        "auth" : "google",
+        "origin" : "29400 SW Town Center Loop West, Wilsonville, OR 97070",
+        "destination" : "111 SW 5th Ave, Portland, OR 97204"
+      }
+  }
+}
