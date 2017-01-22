@@ -34,11 +34,13 @@ module.exports = {
                            '&departure_time=' + departure_time.unix() + 
                            '&mode=' + config.travelMode +
                            '&key=' + config.globalAuth[config.auth].api_key;
-
+      logger.debug(url);
       // Get duration in traffic for each departure time
       dependencies.easyRequest.JSON(url, function (err, json) {
 
+
         if (err) return jobCallback(err);
+        if (json.status != "OK") return jobCallback('Maps api call error ${json.status}, try modifying your params');
 
         // Dynamically create objects for each departure time and set the useful values for display
         dotProp.set(departures, `${departure}.duration_sec`,             json.routes[0].legs[0].duration.value);
