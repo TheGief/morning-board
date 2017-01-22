@@ -14,28 +14,39 @@ widget = {
     })
 
     // Populate the big summary content
-    $('.temperature', el).text(data.weather.currently.temperature);
-    $('.apparentTemperature', el).text('Feels like ' + data.weather.currently.apparentTemperature);
+    $('.temperature', el).text(Math.round(data.weather.currently.temperature) + '°');
+    $('.apparentTemperature', el).text('Feels like ' + Math.round(data.weather.currently.apparentTemperature));
     $('.summary', el).text(data.weather.hourly.summary);
     
-    // Inject temp/icons for all hours
-    _.each(data.weather.hourly.data, function (hour){
-        if (hour.temperature < low) low = hour.temperature;
-        if (hour.temperature > high) high = hour.temperature;
-    	$('table.hourly tr.temps', el).append(`<td>${Math.round(hour.temperature)}</td>`);
-        $('table.hourly tr.icons', el).append(`<td><canvas class="${hour.icon}" width="36" height="36"></canvas></td>`);
-        $('table.hourly tr.time', el).append(`<td>${moment.unix(hour.time).format('ha')}</td>`);
+    // Inject temp/icons for each day
+    _.each(_.first(data.weather.daily.data, 7), function (day, i){
+        // Don't show today but grab the high and low. Also empty the rows first 
+        // so we don't append to infinity and eventually crash the browser
+        if (i == 0) {
+            low = day.temperatureMin;
+            high = day.temperatureMax;
+            $('table.daily tr.temps').empty();
+            $('table.daily tr.icons').empty();
+            $('table.daily tr.time').empty();
+        } else {
+            $('table.daily tr.temps', el).append(`<td><span class="max">${Math.round(day.temperatureMax)}</span><span class="min">${Math.round(day.temperatureMin)}</span></td>`);
+            $('table.daily tr.icons', el).append(`<td><canvas class="${day.icon}" width="62" height="62"></canvas></td>`);
+            $('table.daily tr.time', el).append(`<td>${moment.unix(day.time).format('ddd')}</td>`);
+        }
     })
 
     $('.high', el).text(Math.round(high) + '↑');
     $('.low', el).text(Math.round(low) + '↓');
 
-    // Add hourly climacons
-    $('table.hourly tr.icons', el).find('canvas').each(function(i,el){
+    // Add daily climacons
+    $('table.daily tr.icons', el).find('canvas').each(function(i,el){
     	skycons.add(el, $(el).attr('class'))
     })
 
     // Footer
     $('.footer', el).text(`${data.location}`);
+
+    // Animate that shiz
+    skycons.play();
   }
 };
