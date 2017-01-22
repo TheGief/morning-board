@@ -25,9 +25,9 @@ widget = {
         if (i == 0) {
             low = day.temperatureMin;
             high = day.temperatureMax;
-            $('table.daily tr.temps').empty();
-            $('table.daily tr.icons').empty();
-            $('table.daily tr.time').empty();
+            $('table.daily tr.temps', el).empty();
+            $('table.daily tr.icons', el).empty();
+            $('table.daily tr.time', el).empty();
         } else {
             $('table.daily tr.temps', el).append(`<td><span class="max">${Math.round(day.temperatureMax)}</span><span class="min">${Math.round(day.temperatureMin)}</span></td>`);
             $('table.daily tr.icons', el).append(`<td><canvas class="${day.icon}" width="62" height="62"></canvas></td>`);
