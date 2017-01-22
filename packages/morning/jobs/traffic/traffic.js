@@ -55,7 +55,7 @@ module.exports = {
 
       if (err) return jobCallback(err);
 
-      logger.debug('All maps calls are done!');
+      // All maps calls are dont at this point
       jobCallback(null, {'departures': departures, 'departures_array': config.departures});
     });
   }
