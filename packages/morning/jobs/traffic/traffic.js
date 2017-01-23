@@ -34,7 +34,7 @@ module.exports = {
                            '&departure_time=' + departure_time.unix() + 
                            '&mode=' + config.travelMode +
                            '&key=' + config.globalAuth[config.auth].api_key;
-      logger.debug(url);
+
       // Get duration in traffic for each departure time
       dependencies.easyRequest.JSON(url, function (err, json) {
 

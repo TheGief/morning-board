@@ -1,3 +1,14 @@
+/**
+ * Job: trimet
+ *
+ * Expected configuration:
+ *  "schedule" : {
+ *    "interval" : 900000,
+ *    "calendarUrl" :  "https://calendar.google.com/calendar/ical/xxxxx/basic.ics",
+ *    "maxEntries": 9
+ *  }
+ */
+
 var ical = require('ical');
 var moment = require('moment');
 
